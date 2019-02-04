@@ -1,0 +1,4 @@
+<div id="profile">
+  <img *ngIf="emailMD5 !== undefined" src="https://www.gravatar.com/avatar/{{emailMD5}}">
+  <span *ngIf="user !== undefined">{{user.name}}</span>
+</div>

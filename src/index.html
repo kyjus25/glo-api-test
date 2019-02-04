@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>glo-api-test</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <link rel="stylesheet" type="text/css" href="../node_modules/primeicons/primeicons.css" />
+  <link rel="stylesheet" type="text/css" href="../node_modules/primeng/resources/themes/nova-light/theme.css" />
+  <link rel="stylesheet" type="text/css" href="../node_modules/primeng/resources/primeng.min.css" />
+
+  <link rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous"
+  >
+
+
+</head>
+<body>
+  <div id="drag-region"></div>
+  <button id="close" onclick="closeWindow()"><i class="fa fa-times"></i></button>
+  <app-root>Loading...</app-root>
+
+
+</body>
+
+<script>
+  const remote = require('electron').remote;
+  function closeWindow() {
+    let w = remote.getCurrentWindow();
+    w.close();
+  }
+</script>
+
+</html>

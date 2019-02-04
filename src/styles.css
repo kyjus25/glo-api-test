@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,900');
+
+body {
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  margin: 10px;
+  overflow: hidden;
+}
+#drag-region {
+  -webkit-app-region: drag;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100% - 30px);
+  height: 20px;
+}
+body .ui-button {
+  background-color: RGBA(26, 58, 74, 1.00);
+  border: RGBA(229, 73, 33, 1.00);
+}
+body .ui-button:hover {
+  background-color: #262633;
+}
+body .ui-button span {
+  background-color: RGBA(26, 58, 74, 0.8) !important;
+  border: RGBA(229, 73, 33, 1.00) !important;
+}
+#close {
+  position: fixed;
+  right: 0;
+  top: 0;
+  color: white;
+  border: none;
+  border-radius: 0;
+  background-color: indianred;
+  border-bottom-left-radius: 10px;
+  font-size: 15px;
+  z-index: 2;
+  cursor: pointer;
+}
+#close:hover {
+  background-color: red;
+}
+#menuButton {
+  position: fixed;
+  left: 0;
+  top: 0;
+  color: white;
+  border: none;
+  border-radius: 0;
+  background-color: grey;
+  border-bottom-right-radius: 10px;
+  font-size: 15px;
+  z-index: 2;
+  cursor: pointer;
+}
+#menuButton:hover {
+  background-color: lightgrey;
+}
+app-landing:before {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  content: '';
+  top: 0;
+  left: 0;
+  z-index: -99;
+  background-color: RGBA(31, 43, 55, 1.00);
+}
+
+body .ui-table .ui-table-thead > tr > th {
+  font-size: 12px;
+}
+.ui-menu {
+  opacity: 1 !important;
+  transform: none !important;
+}
+/*p-dialog table {*/
+  /*width: 300px !important;*/
+  /*margin-left: 70px !important;*/
+/*}*/
