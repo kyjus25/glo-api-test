@@ -10,11 +10,9 @@ Install dependencies:
 npm install
 ```
 
-Other dependencies:
-<ul>
-<li>You will need a GLO OAuth config from Axosoft in order to proceed.</li>
-<li>Copy `src/config.tpl.json` to `src/config.json `</li>
-</ul>
+Other dependencies:<br>
+• You will need a GLO OAuth config from Axosoft in order to proceed.<br>
+• Copy `src/config.tpl.json` to `src/config.json `</br>
 
 Build angular2 code and run current app locally:
 
