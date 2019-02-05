@@ -77,6 +77,17 @@ expressApp.get('/getBoards', function (req, res) {
         });
 });
 
+expressApp.get('/getCards', function (req, res) {
+    request.get('https://gloapi.gitkraken.com/v1/glo/boards/' + req.query.boardId + '/cards?access_token=' + expressApp.settings.token.access_token + '&fields=archived_date,assignees,attachment_count,board_id,column_id,comment_count,completed_task_count,created_by,created_date,due_date,description,labels,name,total_task_count,updated_date',
+        (error, response, body) => {
+            if (error) {
+                console.error(error)
+                return
+            }
+            res.send(body);
+        });
+});
+
 expressApp.get('/authenticate', function (req, res) {
     shell.openExternal('https://app.gitkraken.com/oauth/authorize?response_type=code&client_id='+ config.CLIENT_ID + '&scope=board:write board:read user:write user:read&state=' + config.STATE)
 });

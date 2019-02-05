@@ -39,6 +39,7 @@ export class DashboardComponent {
       this.user = <User>user;
       this.boards = boards;
       this.activeBoard = boards[0];
+      this.showBoard(boards[0].id);
       this.emailMD5 = Md5.hashStr(this.user.email);
 
       this.boardMenuItems = [];
@@ -57,6 +58,9 @@ export class DashboardComponent {
 
   public showBoard(id) {
     this.activeBoard = this.boards.find(board => board.id === id);
+    this.http.get('http:/localhost:5000/getCards?boardId=' + id).subscribe(cards => {
+      console.log('cards', cards);
+    });
   }
 }
 

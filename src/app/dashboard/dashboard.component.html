@@ -10,6 +10,11 @@
   </div>
   <div id="cards">
     <h1 *ngIf="activeBoard !== undefined">{{activeBoard.name}}</h1>
+    <div *ngIf="activeBoard !== undefined" class="wrap">
+      <div *ngFor="let column of activeBoard.columns" class="column">
+        <span>{{column.name}}</span>
+      </div>
+    </div>
   </div>
 </div>
 
