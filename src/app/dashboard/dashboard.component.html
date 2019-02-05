@@ -1,4 +1,15 @@
 <div id="profile">
-  <img *ngIf="emailMD5 !== undefined" src="https://www.gravatar.com/avatar/{{emailMD5}}">
   <span *ngIf="user !== undefined">{{user.name}}</span>
+  <img *ngIf="emailMD5 !== undefined" src="https://www.gravatar.com/avatar/{{emailMD5}}">
 </div>
+
+<div id="container">
+  <div id="boards">
+    <p>Boards</p>
+    <p-tabMenu [model]="boardMenuItems" [activeItem]="boardMenuItems[0]"></p-tabMenu>
+  </div>
+  <div id="cards">
+    <h1 *ngIf="activeBoard !== undefined">{{activeBoard.name}}</h1>
+  </div>
+</div>
+

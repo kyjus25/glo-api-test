@@ -6,7 +6,15 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { DashboardComponent } from './dashboard.component';
-import {DialogModule, DropdownModule, FileUploadModule, MenuModule, MessageService, MultiSelectModule} from 'primeng/primeng';
+import {
+  DialogModule,
+  DropdownModule,
+  FileUploadModule,
+  MenuModule,
+  MessageService,
+  MultiSelectModule,
+  TabMenuModule
+} from 'primeng/primeng';
 import {TableModule} from 'primeng/table';
 import {TooltipModule} from 'primeng/tooltip';
 import {ToastModule} from 'primeng/toast';
@@ -21,6 +29,7 @@ import {ToastModule} from 'primeng/toast';
     FormsModule,
     MultiSelectModule,
     MenuModule,
+    TabMenuModule,
     TooltipModule,
     DropdownModule,
     FileUploadModule,

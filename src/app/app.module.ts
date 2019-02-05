@@ -16,7 +16,7 @@ import {appRoutes} from './routes';
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {DropdownModule} from 'primeng/dropdown';
-import {DialogModule, FileUploadModule, TooltipModule} from 'primeng/primeng';
+import {DialogModule, FileUploadModule, TabMenuModule, TooltipModule} from 'primeng/primeng';
 import {TableModule} from 'primeng/table';
 import {ToastModule} from 'primeng/toast';
 import {DashboardModule} from './dashboard/dashboard.module';
@@ -36,6 +36,7 @@ import {LoginModule} from './login/login.module';
     CardModule,
     FormsModule,
     DialogModule,
+    TabMenuModule,
     TableModule,
     HttpClientModule,
     TooltipModule,

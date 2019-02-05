@@ -5,8 +5,9 @@
 body {
   height: 100vh;
   font-family: 'Montserrat', sans-serif;
-  margin: 10px;
+  margin: 0;
   overflow: hidden;
+  background-color: RGBA(27, 33, 38, 1.00);
 }
 #drag-region {
   -webkit-app-region: drag;
@@ -29,13 +30,13 @@ body .ui-button span {
 }
 #close {
   position: fixed;
-  right: 0;
+  left: 0;
   top: 0;
   color: white;
   border: none;
   border-radius: 0;
   background-color: indianred;
-  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   font-size: 15px;
   z-index: 2;
   cursor: pointer;
@@ -67,17 +68,35 @@ app-landing:before {
   top: 0;
   left: 0;
   z-index: -99;
-  background-color: RGBA(31, 43, 55, 1.00);
+  background-color: RGBA(27, 33, 38, 1.00)
 }
 
 body .ui-table .ui-table-thead > tr > th {
   font-size: 12px;
 }
-.ui-menu {
-  opacity: 1 !important;
-  transform: none !important;
+body .ui-tabmenu .ui-tabmenu-nav {
+  border: none !important;
 }
-/*p-dialog table {*/
-  /*width: 300px !important;*/
-  /*margin-left: 70px !important;*/
-/*}*/
+.ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem {
+  background-color: transparent !important;
+  border: none !important;
+  width: 100% !important;
+}
+.ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem a {
+  display: block !important;
+  float: none !important;
+}
+.ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem .ui-menuitem-link .ui-menuitem-text {
+  color: RGBA(180, 201, 207, 1.00) !important;
+  text-shadow: 1px 1px 1px RGBA(20, 20, 23, 0.2) !important;
+  font-size: 12px !important;
+  padding-left: 15px !important;
+}
+.ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem:hover {
+  color: RGBA(180, 201, 207, 1.00) !important;
+  text-shadow: 1px 1px 1px RGBA(20, 20, 23, 0.2) !important;
+  background-color: RGBA(26, 58, 74, 0.8) !important;
+}
+.ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-active {
+  background-color: RGBA(26, 58, 74, 1.00) !important;
+}

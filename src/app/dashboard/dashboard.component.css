@@ -1,7 +1,41 @@
+#profile, #boards {
+  color: RGBA(180, 201, 207, 1.00);
+  text-shadow: 1px 1px 1px RGBA(20, 20, 23, 0.2);
+}
+#container {
+  display: flex;
+}
 #profile {
-  text-align: center;
+  text-align: right;
+  background-color: RGBA(34, 50, 63, 1.00);
+  padding: 0 10px;
+  border-bottom: 1px solid RGBA(20, 20, 23, 1.00);
+}
+#profile img {
+  display: inline-block;
+  vertical-align: middle;
+  height: 30px;
+  border-radius: 100%;
+  margin: 10px 0 10px 10px;
 }
 #profile span {
-  display: block;
-  margin: 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#boards {
+  width: 250px;
+  height: 100vh;
+  background-color: RGBA(34, 50, 63, 1.00);
+  border-right: 1px solid RGBA(20, 20, 23, 1.00);
+}
+#boards p {
+  margin: 0;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 12px;
+}
+#cards h1 {
+  color: RGBA(180, 201, 207, 1.00);
+  text-shadow: 1px 1px 1px RGBA(20, 20, 23, 0.2);
+  padding: 0 20px;
 }
