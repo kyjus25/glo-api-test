@@ -17,9 +17,15 @@ import {MenuItem} from 'primeng/api';
 export class DashboardComponent {
   public user: User;
   public boards;
+  public cards;
   public emailMD5;
   public boardMenuItems: MenuItem[] = [];
   public activeBoard;
+  public filter;
+  public filterList = [
+    {label: 'None', value: 'none'},
+    {label: 'My Tasks', value: 'my_tasks'}
+  ];
 
   constructor(
     public router: Router,
@@ -60,7 +66,16 @@ export class DashboardComponent {
     this.activeBoard = this.boards.find(board => board.id === id);
     this.http.get('http:/localhost:5000/getCards?boardId=' + id).subscribe(cards => {
       console.log('cards', cards);
+      this.cards = cards;
     });
+  }
+
+  public getCards(columnId) {
+    if (this.cards) {
+      return this.cards.filter(card => card.column_id === columnId);
+    } else {
+      return [];
+    }
   }
 }
 

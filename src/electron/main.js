@@ -6,7 +6,6 @@ const app = electron.app
 // Module to login native browser window.
 const BrowserWindow = electron.BrowserWindow;
 
-
 global.__basedir = __dirname;
 
 var express = require('express');
