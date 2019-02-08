@@ -23,6 +23,14 @@
         <div *ngFor="let card of getCardsByColumn(column.id)" class="card">
           <span>{{card.name}}</span>
         </div>
+        <div class="add-card">
+          <span *ngIf="addCard(column.id) === false" (click)="setAddCard(column.id, true)">Add a card</span>
+          <span *ngIf="addCard(column.id) === true">
+            <input type="text" pInputText [(ngModel)]="addCardText" placeholder="Type a name for your card..."/>
+            <button pButton type="button" label="Cancel" (click)="setAddCard(false)"></button>
+            <button pButton type="button" label="Add Card" (click)="addCardHandler($event)"></button>
+          </span>
+        </div>
       </div>
     </div>
   </div>

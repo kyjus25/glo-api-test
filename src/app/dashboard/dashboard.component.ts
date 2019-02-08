@@ -22,6 +22,8 @@ export class DashboardComponent {
   public boardMenuItems: MenuItem[] = [];
   public activeBoard;
   public filter = 'none';
+  public addCardEnabled = [];
+  public addCardText = '';
   public filterList = [
     {label: 'None', value: 'none'},
     {label: 'My Tasks', value: 'my_tasks'}
@@ -73,6 +75,30 @@ export class DashboardComponent {
       });
     });
     this.showBoard(this.boards[0].id);
+  }
+
+  public setAddCard(columnId, method) {
+    for (const k in this.addCardEnabled) {
+      if (this.addCardEnabled.hasOwnProperty(k)) {
+        this.addCardEnabled[k] = false;
+      }
+    }
+    this.addCardText = '';
+    if (method) {
+      this.addCardEnabled[columnId] = true;
+    }
+  }
+
+  public addCard(columnId) {
+    if (this.addCardEnabled[columnId] === undefined) {
+      return false;
+    } else {
+      return !!this.addCardEnabled[columnId];
+    }
+  }
+
+  public addCardHandler() {
+    console.log('create card ' + this.addCardText);
   }
 
   public showBoard(id) {
