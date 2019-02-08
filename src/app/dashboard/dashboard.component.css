@@ -44,7 +44,7 @@
   font-weight: bold;
   font-size: 12px;
 }
-#cards h1 {
+.cards h1 {
   color: RGBA(180, 201, 207, 1.00);
   text-shadow: 1px 1px 1px RGBA(20, 20, 23, 0.2);
   padding: 0 20px;
@@ -76,8 +76,11 @@
 .wrap {
   overflow-x: scroll;
   white-space: nowrap;
-  width: calc(100vw - 250px);
+  width: 100vw;
   height: calc(100vh - 90px);
+}
+.wrap.none {
+  width: calc(100vw - 250px);
 }
 .card {
   background-color: RGBA(39, 55, 71, 1.00);

@@ -21,7 +21,7 @@ export class DashboardComponent {
   public emailMD5;
   public boardMenuItems: MenuItem[] = [];
   public activeBoard;
-  public filter;
+  public filter = 'none';
   public filterList = [
     {label: 'None', value: 'none'},
     {label: 'My Tasks', value: 'my_tasks'}
@@ -45,7 +45,7 @@ export class DashboardComponent {
       this.user = <User>user;
       this.boards = boards;
       this.activeBoard = boards[0];
-      this.showBoard(boards[0].id);
+      this.getCards();
       this.emailMD5 = Md5.hashStr(this.user.email);
 
       this.boardMenuItems = [];
@@ -62,17 +62,34 @@ export class DashboardComponent {
     });
   }
 
-  public showBoard(id) {
-    this.activeBoard = this.boards.find(board => board.id === id);
-    this.http.get('http:/localhost:5000/getCards?boardId=' + id).subscribe(cards => {
-      console.log('cards', cards);
-      this.cards = cards;
+  public getCards() {
+    this.cards = [];
+    this.boards.forEach(board => {
+      this.cards[board.id] = [];
     });
+    this.boards.forEach(board => {
+      this.http.get('http:/localhost:5000/getCards?boardId=' + board.id).subscribe(cards => {
+        Array.prototype.push.apply(this.cards[board.id], cards);
+      });
+    });
+    this.showBoard(this.boards[0].id);
   }
 
-  public getCards(columnId) {
+  public showBoard(id) {
+    this.activeBoard = this.boards.find(board => board.id === id);
+  }
+
+  public getCardsByColumn(columnId): any {
     if (this.cards) {
-      return this.cards.filter(card => card.column_id === columnId);
+      return this.cards[this.activeBoard.id].filter(card => card.column_id === columnId);
+    } else {
+      return [];
+    }
+  }
+
+  public getCardsByBoard(boardId): any {
+    if (this.cards) {
+      return this.cards[boardId];
     } else {
       return [];
     }

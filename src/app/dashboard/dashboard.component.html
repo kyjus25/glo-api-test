@@ -9,18 +9,31 @@
 </div>
 
 <div id="container">
-  <div id="boards">
+  <div id="boards" *ngIf="filter === 'none'">
     <p>Boards</p>
     <p-tabMenu [model]="boardMenuItems" [activeItem]="boardMenuItems[0]"></p-tabMenu>
   </div>
-  <div id="cards">
+  <div class="cards" *ngIf="filter === 'none'">
     <h1 *ngIf="activeBoard !== undefined">{{activeBoard.name}}</h1>
-    <div *ngIf="activeBoard !== undefined" class="wrap">
+    <div *ngIf="activeBoard !== undefined" class="wrap {{filter}}">
       <div *ngFor="let column of activeBoard.columns" class="column">
         <span>{{column.name}}</span>
-        <span>{{getCards(column.id).length}} cards</span>
+        <span>{{getCardsByColumn(column.id).length}} cards</span>
 
-        <div *ngFor="let card of getCards(column.id)" class="card">
+        <div *ngFor="let card of getCardsByColumn(column.id)" class="card">
+          <span>{{card.name}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards" *ngIf="filter === 'my_tasks'">
+    <h1>Showing all cards assigned to you</h1>
+    <div *ngIf="boards !== undefined" class="wrap {{filter}}">
+      <div *ngFor="let board of boards" class="column">
+        <span>{{board.name}}</span>
+        <span>{{getCardsByBoard(board.id).length}} cards</span>
+        <div *ngFor="let card of getCardsByBoard(board.id)" class="card">
           <span>{{card.name}}</span>
         </div>
       </div>
