@@ -26,6 +26,7 @@ export class DashboardComponent {
   public filter = 'none';
   public addCardEnabled = [];
   public addColumnEnabled = false;
+  public columnMenuEnabled = [];
   public addCardText = '';
   public addColumnText = '';
   public filterList = [
@@ -110,6 +111,37 @@ export class DashboardComponent {
     }
   }
 
+  public setColumnMenu(columnId, method) {
+    for (const k in this.columnMenuEnabled) {
+      if (this.columnMenuEnabled.hasOwnProperty(k)) {
+        this.columnMenuEnabled[k] = false;
+      }
+    }
+    if (method) {
+      this.columnMenuEnabled[columnId] = true;
+    }
+  }
+
+  public columnMenu(columnId) {
+    if (columnId !== 'any') {
+      if (this.columnMenuEnabled[columnId] === undefined) {
+        return false;
+      } else {
+        return !!this.columnMenuEnabled[columnId];
+      }
+    } else {
+      let foundEnabled = false;
+      for (const k in this.columnMenuEnabled) {
+        if (this.columnMenuEnabled.hasOwnProperty(k)) {
+          if (this.columnMenuEnabled[k]) {
+            foundEnabled = true;
+          }
+        }
+      }
+      return foundEnabled;
+    }
+  }
+
   public addColumn() {
     return this.addColumnEnabled;
   }
@@ -127,6 +159,14 @@ export class DashboardComponent {
       {name: this.addColumnText}).subscribe(newColumn => {
       this.activeBoard.columns.push(newColumn);
       this.setAddColumn(false);
+    });
+  }
+
+  public deleteColumnHandler(columnId) {
+    this.http.get('http:/localhost:5000/deleteColumn?boardId='
+      + this.activeBoard.id + '&columnId=' + columnId).subscribe(deleteColumn => {
+        console.log(deleteColumn);
+      this.setColumnMenu(null, false);
     });
   }
 

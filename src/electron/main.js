@@ -103,6 +103,14 @@ expressApp.post('/createColumn', function (req, res) {
     });
 });
 
+expressApp.get('/deleteColumn', function (req, res) {
+    request.post('https://gloapi.gitkraken.com/v1/glo/boards/' + req.query.boardId + '/columns/' + req.query.columnId + '?access_token=' + expressApp.settings.token.access_token, {
+        json: req.body
+    }, (error, response, body) => {
+        res.send(body);
+    });
+});
+
 expressApp.get('/authenticate', function (req, res) {
     shell.openExternal('https://app.gitkraken.com/oauth/authorize?response_type=code&client_id='+ config.CLIENT_ID + '&scope=board:write board:read user:write user:read&state=' + config.STATE)
 });

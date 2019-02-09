@@ -1,3 +1,4 @@
+<div id="overlay-dismiss" *ngIf="columnMenu('any') === true" (click)="setColumnMenu(null, false)"></div>
 <div id="header">
   <div id="filter">
     Filter By: <p-dropdown [options]="filterList" [(ngModel)]="filter"></p-dropdown>
@@ -17,6 +18,13 @@
     <h1 *ngIf="activeBoard !== undefined">{{activeBoard.name}}</h1>
     <div *ngIf="activeBoard !== undefined" class="wrap {{filter}}">
       <div *ngFor="let column of activeBoard.columns" class="column">
+        <div class="column-buttons {{columnMenu(column.id)}}">
+          <span (click)="setColumnMenu(column.id, true)"><i class="fas fa-ellipsis-v"></i></span>
+          <span *ngIf="columnMenu(column.id) === true" class="dropdown">
+            <span>Rename</span>
+            <span (click)="deleteColumnHandler(column.id)">Delete</span>
+          </span>
+        </div>
         <span>{{column.name}}</span>
         <span>{{getCardsByColumn(column.id).length}} cards</span>
 
