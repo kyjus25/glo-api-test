@@ -197,7 +197,11 @@ export class DashboardComponent {
   public deleteColumnHandler(columnId) {
     this.http.get('http:/localhost:5000/deleteColumn?boardId='
       + this.activeBoard.id + '&columnId=' + columnId).subscribe(deleteColumn => {
-        console.log(deleteColumn);
+        for (let i = 0; i < this.activeBoard.columns.length; i++) {
+          if (this.activeBoard.columns[i].id === columnId) {
+            this.activeBoard.columns.splice(i, 1);
+          }
+        } 
       this.setColumnMenu(null, false);
     });
   }
@@ -205,7 +209,11 @@ export class DashboardComponent {
   public deleteCardHandler(cardId) {
     this.http.get('http:/localhost:5000/deleteCard?boardId='
       + this.activeBoard.id + '&cardId=' + cardId).subscribe(deleteCard => {
-      console.log(deleteCard);
+      for (let i = 0; i < this.cards[this.activeBoard.id].length; i++) {
+        if (this.cards[this.activeBoard.id][i].id === cardId) {
+          this.cards[this.activeBoard.id].splice(i, 1);
+        }
+      } 
       this.setCardMenu(null, false);
     });
   }
