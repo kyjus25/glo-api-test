@@ -186,13 +186,15 @@ export class DashboardComponent {
     if (this.cards) {
       if (onlyMe) {
         const cardsOnlyMe = [];
-        this.cards[boardId].forEach(card => {
-          card.assignees.forEach(assignee => {
-            if (assignee.id === this.user.id) {
-              cardsOnlyMe.push(card);
-            }
+        if (this.cards[boardId] !== undefined) {
+          this.cards[boardId].forEach(card => {
+            card.assignees.forEach(assignee => {
+              if (assignee.id === this.user.id) {
+                cardsOnlyMe.push(card);
+              }
+            });
           });
-        });
+        }
         return cardsOnlyMe;
       } else {
         return this.cards[boardId];
