@@ -27,6 +27,7 @@ export class DashboardComponent {
   public addCardEnabled = [];
   public addColumnEnabled = false;
   public columnMenuEnabled = [];
+  public cardMenuEnabled = [];
   public addCardText = '';
   public addColumnText = '';
   public filterList = [
@@ -122,6 +123,17 @@ export class DashboardComponent {
     }
   }
 
+  public setCardMenu(cardId, method) {
+    for (const k in this.cardMenuEnabled) {
+      if (this.cardMenuEnabled.hasOwnProperty(k)) {
+        this.cardMenuEnabled[k] = false;
+      }
+    }
+    if (method) {
+      this.cardMenuEnabled[cardId] = true;
+    }
+  }
+
   public columnMenu(columnId) {
     if (columnId !== 'any') {
       if (this.columnMenuEnabled[columnId] === undefined) {
@@ -134,6 +146,26 @@ export class DashboardComponent {
       for (const k in this.columnMenuEnabled) {
         if (this.columnMenuEnabled.hasOwnProperty(k)) {
           if (this.columnMenuEnabled[k]) {
+            foundEnabled = true;
+          }
+        }
+      }
+      return foundEnabled;
+    }
+  }
+
+  public cardMenu(cardId) {
+    if (cardId !== 'any') {
+      if (this.cardMenuEnabled[cardId] === undefined) {
+        return false;
+      } else {
+        return !!this.cardMenuEnabled[cardId];
+      }
+    } else {
+      let foundEnabled = false;
+      for (const k in this.cardMenuEnabled) {
+        if (this.cardMenuEnabled.hasOwnProperty(k)) {
+          if (this.cardMenuEnabled[k]) {
             foundEnabled = true;
           }
         }
@@ -170,6 +202,14 @@ export class DashboardComponent {
     });
   }
 
+  public deleteCardHandler(cardId) {
+    this.http.get('http:/localhost:5000/deleteCard?boardId='
+      + this.activeBoard.id + '&cardId=' + cardId).subscribe(deleteCard => {
+      console.log(deleteCard);
+      this.setCardMenu(null, false);
+    });
+  }
+
   public showBoard(id) {
     this.activeBoard = this.boards.find(board => board.id === id);
   }
@@ -202,6 +242,11 @@ export class DashboardComponent {
     } else {
       return [];
     }
+  }
+
+  public dropdownDismiss() {
+    this.setColumnMenu(null, false);
+    this.setCardMenu(null, false);
   }
 }
 

@@ -104,7 +104,15 @@ expressApp.post('/createColumn', function (req, res) {
 });
 
 expressApp.get('/deleteColumn', function (req, res) {
-    request.post('https://gloapi.gitkraken.com/v1/glo/boards/' + req.query.boardId + '/columns/' + req.query.columnId + '?access_token=' + expressApp.settings.token.access_token, {
+    request.delete('https://gloapi.gitkraken.com/v1/glo/boards/' + req.query.boardId + '/columns/' + req.query.columnId + '?access_token=' + expressApp.settings.token.access_token, {
+        json: req.body
+    }, (error, response, body) => {
+        res.send(body);
+    });
+});
+
+expressApp.get('/deleteCard', function (req, res) {
+    request.delete('https://gloapi.gitkraken.com/v1/glo/boards/' + req.query.boardId + '/cards/' + req.query.cardId + '?access_token=' + expressApp.settings.token.access_token, {
         json: req.body
     }, (error, response, body) => {
         res.send(body);
