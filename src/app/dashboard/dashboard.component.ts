@@ -77,6 +77,7 @@ export class DashboardComponent {
       });
     });
     this.showBoard(this.boards[0].id);
+    console.log('cards', this.cards);
   }
 
   public setAddCard(columnId, method) {
@@ -119,9 +120,21 @@ export class DashboardComponent {
     }
   }
 
-  public getCardsByBoard(boardId): any {
+  public getCardsByBoard(boardId, onlyMe): any {
     if (this.cards) {
-      return this.cards[boardId];
+      if (onlyMe) {
+        const cardsOnlyMe = [];
+        this.cards[boardId].forEach(card => {
+          card.assignees.forEach(assignee => {
+            if (assignee.id === this.user.id) {
+              cardsOnlyMe.push(card);
+            }
+          });
+        });
+        return cardsOnlyMe;
+      } else {
+        return this.cards[boardId];
+      }
     } else {
       return [];
     }

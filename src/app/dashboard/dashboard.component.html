@@ -40,8 +40,8 @@
     <div *ngIf="boards !== undefined" class="wrap {{filter}}">
       <div *ngFor="let board of boards" class="column">
         <span>{{board.name}}</span>
-        <span>{{getCardsByBoard(board.id).length}} cards</span>
-        <div *ngFor="let card of getCardsByBoard(board.id)" class="card">
+        <span>{{getCardsByBoard(board.id, true).length}} cards</span>
+        <div *ngFor="let card of getCardsByBoard(board.id, true)" class="card">
           <span>{{card.name}}</span>
         </div>
       </div>
