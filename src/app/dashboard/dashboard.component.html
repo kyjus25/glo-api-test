@@ -32,6 +32,14 @@
           </span>
         </div>
       </div>
+      <div class="add-column {{addColumn()}}">
+        <span *ngIf="addColumn() === false" (click)="setAddColumn(true)">Add a column</span>
+        <span *ngIf="addColumn() === true">
+            <input type="text" pInputText [(ngModel)]="addColumnText" placeholder="Type a name for your column..."/>
+            <button pButton type="button" label="Cancel" (click)="setAddColumn(false)"></button>
+            <button pButton type="button" label="Add Column" (click)="addColumnHandler()"></button>
+          </span>
+      </div>
     </div>
   </div>
 

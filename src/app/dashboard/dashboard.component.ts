@@ -25,7 +25,9 @@ export class DashboardComponent {
   public activeBoard;
   public filter = 'none';
   public addCardEnabled = [];
+  public addColumnEnabled = false;
   public addCardText = '';
+  public addColumnText = '';
   public filterList = [
     {label: 'None', value: 'none'},
     {label: 'My Tasks', value: 'my_tasks'}
@@ -92,6 +94,14 @@ export class DashboardComponent {
     }
   }
 
+  public setAddColumn(method) {
+    this.addColumnEnabled = false;
+    this.addColumnText = '';
+    if (method) {
+      this.addColumnEnabled = true;
+    }
+  }
+
   public addCard(columnId) {
     if (this.addCardEnabled[columnId] === undefined) {
       return false;
@@ -100,11 +110,23 @@ export class DashboardComponent {
     }
   }
 
+  public addColumn() {
+    return this.addColumnEnabled;
+  }
+
   public addCardHandler(columnId) {
     this.http.post('http:/localhost:5000/createCard?boardId=' + this.activeBoard.id,
       {name: this.addCardText, column_id: columnId}).subscribe(newCard => {
       this.cards[this.activeBoard.id].push(newCard);
       this.setAddCard(null, false);
+    });
+  }
+
+  public addColumnHandler() {
+    this.http.post('http:/localhost:5000/createColumn?boardId=' + this.activeBoard.id,
+      {name: this.addColumnText}).subscribe(newColumn => {
+      this.activeBoard.columns.push(newColumn);
+      this.setAddColumn(false);
     });
   }
 

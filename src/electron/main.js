@@ -88,14 +88,15 @@ expressApp.get('/getCards', function (req, res) {
 });
 
 expressApp.post('/createCard', function (req, res) {
-    const request_body = {
-        'grant_type': 'authorization_code',
-        'client_id': config.CLIENT_ID,
-        'client_secret': config.CLIENT_SECRET,
-        'code': req.query.code
-    };
-
     request.post('https://gloapi.gitkraken.com/v1/glo/boards/' + req.query.boardId + '/cards?access_token=' + expressApp.settings.token.access_token, {
+        json: req.body
+    }, (error, response, body) => {
+        res.send(body);
+    });
+});
+
+expressApp.post('/createColumn', function (req, res) {
+    request.post('https://gloapi.gitkraken.com/v1/glo/boards/' + req.query.boardId + '/columns?access_token=' + expressApp.settings.token.access_token, {
         json: req.body
     }, (error, response, body) => {
         res.send(body);

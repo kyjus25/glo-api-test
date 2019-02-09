@@ -55,9 +55,12 @@
   vertical-align: top;
   background-color: RGBA(31, 43, 55, 1.00);
   width: 300px;
-  margin: 0 15px;
+  margin-right: 15px;
   padding: 5px 10px;
   border-radius: 2px;
+}
+.column:first-of-type {
+  margin-left: 15px;
 }
 .column > span {
   text-transform: uppercase;
@@ -92,7 +95,7 @@
   font-weight: 600;
   border-radius: 4px;
 }
-.add-card span {
+.add-card span, .add-column span {
   font-weight: 400;
   color: #28DFF6;
   text-transform: none;
@@ -100,7 +103,7 @@
   margin-bottom: 15px;
   cursor: pointer;
 }
-.add-card input {
+.add-card input, .add-column input {
   display: block;
   width: 100%;
   background-color: rgba(0,0,0,0.1) !important;
@@ -110,6 +113,18 @@
   border: 1px solid RGBA(26, 58, 74, 1.00);
   margin-bottom: 10px;
 }
-.add-card input::placeholder {
+.add-card input::placeholder, .add-column input::placeholder {
   color: RGBA(78, 115, 123, 1.00);
+}
+.add-column {
+  display: inline-block;
+  vertical-align: top;
+  width: 300px;
+  border-radius: 2px;
+  margin-bottom: 15px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+.add-column.false:hover {
+  background-color: RGBA(31, 43, 55, 0.6);
 }
