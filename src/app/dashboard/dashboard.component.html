@@ -28,7 +28,7 @@
           <span *ngIf="addCard(column.id) === true">
             <input type="text" pInputText [(ngModel)]="addCardText" placeholder="Type a name for your card..."/>
             <button pButton type="button" label="Cancel" (click)="setAddCard(false)"></button>
-            <button pButton type="button" label="Add Card" (click)="addCardHandler($event)"></button>
+            <button pButton type="button" label="Add Card" (click)="addCardHandler(column.id)"></button>
           </span>
         </div>
       </div>

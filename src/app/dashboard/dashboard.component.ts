@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {combineLatest} from 'rxjs/observable/combineLatest';
 import {User} from '../types/user';
 import {MenuItem} from 'primeng/api';
+import {Subscription} from 'rxjs/Subscription';
 
 
 
@@ -15,6 +16,7 @@ import {MenuItem} from 'primeng/api';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  private data: Subscription;
   public user: User;
   public boards;
   public cards;
@@ -35,7 +37,7 @@ export class DashboardComponent {
     private http: HttpClient,
   ) {
 
-    combineLatest([
+    this.data = combineLatest([
       this.route.queryParams,
       this.http.get('http:/localhost:5000/getUser'),
       this.http.get('http:/localhost:5000/getBoards'),
@@ -97,8 +99,12 @@ export class DashboardComponent {
     }
   }
 
-  public addCardHandler() {
-    console.log('create card ' + this.addCardText);
+  public addCardHandler(columnId) {
+    this.http.post('http:/localhost:5000/createCard?boardId=' + this.activeBoard.id,
+      {name: this.addCardText, column_id: columnId}).subscribe(newCard => {
+      this.cards[this.activeBoard.id].push(newCard);
+      this.setAddCard(null, false);
+    });
   }
 
   public showBoard(id) {
